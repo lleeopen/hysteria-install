@@ -238,7 +238,7 @@ insthysteria(){
     fi
     ${PACKAGE_INSTALL} curl wget sudo qrencode procps iptables-persistent netfilter-persistent
 
-    wget -N https://raw.githubusercontent.com/Misaka-blog/hysteria-install/main/hy2/install_server.sh
+    wget -N https://raw.githubusercontent.com/lleeopen/hysteria-install/main/hy2/install_server.sh
     bash install_server.sh
     rm -f install_server.sh
 
@@ -358,9 +358,9 @@ dns:
   nameserver:
     - 8.8.8.8
     - 1.1.1.1
-    - 114.114.114.114
+    - 223.5.5.5
 proxies:
-  - name: Misaka-Hysteria2
+  - name: Hysteria2
     type: hysteria2
     server: $last_ip
     port: $port
@@ -371,15 +371,15 @@ proxy-groups:
   - name: Proxy
     type: select
     proxies:
-      - Misaka-Hysteria2
+      - Hysteria2
       
 rules:
   - GEOIP,CN,DIRECT
   - MATCH,Proxy
 EOF
-    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#Misaka-Hysteria2"
+    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#Hysteria2"
     echo $url > /root/hy/url.txt
-    nohopurl="hysteria2://$auth_pwd@$last_ip:$port/?insecure=1&sni=$hy_domain#Misaka-Hysteria2"
+    nohopurl="hysteria2://$auth_pwd@$last_ip:$port/?insecure=1&sni=$hy_domain#Hysteria2"
     echo $nohopurl > /root/hy/url-nohop.txt
 
     systemctl daemon-reload
@@ -543,7 +543,7 @@ showconf(){
 }
 
 update_core(){
-    wget -N https://raw.githubusercontent.com/Misaka-blog/hysteria-install/main/hy2/install_server.sh
+    wget -N https://raw.githubusercontent.com/lleeopen/hysteria-install/main/hy2/install_server.sh
     bash install_server.sh
     
     rm -f install_server.sh
